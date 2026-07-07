@@ -452,3 +452,34 @@ img{max-width:100%;display:block}
   .big-call strong{font-size:27px}
   .floating-call{font-size:20px;padding:11px 23px}
 }
+
+
+/* 2026-07-07 수정: 보유 지게차 사진 정사각형 고정 */
+.equipment-grid .equip-card img{
+  width:100% !important;
+  aspect-ratio:1 / 1 !important;
+  height:auto !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+
+/* 모바일에서도 보유 지게차 사진이 길어지지 않도록 정사각형 유지 */
+@media (max-width:900px){
+  .equipment-grid .equip-card img{
+    aspect-ratio:1 / 1 !important;
+    height:auto !important;
+    object-fit:cover !important;
+  }
+}
+
+/* 아주 작은 화면에서 카드가 답답하면 제목/여백만 살짝 축소 */
+@media (max-width:420px){
+  .equip-card h3{
+    font-size:18px !important;
+    padding:14px 6px !important;
+  }
+  .equip-card p{
+    font-size:14px !important;
+    padding:10px 6px !important;
+  }
+}
