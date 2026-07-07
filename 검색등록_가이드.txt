@@ -1,0 +1,21 @@
+녹산지게차 검색 등록 가이드
+
+1. 네이버
+- 네이버 서치어드바이저 접속
+- 웹마스터 도구 > 사이트 등록
+- https://0518318333.github.io/ 입력
+- HTML 태그 방식으로 소유권 확인
+- 발급된 meta 태그를 index.html의 <head> 안에 넣기
+- sitemap.xml 제출: https://0518318333.github.io/sitemap.xml
+
+2. 구글
+- Google Search Console 접속
+- URL 접두어 방식 선택
+- https://0518318333.github.io/ 입력
+- HTML 태그 방식으로 소유권 확인
+- 발급된 meta 태그를 index.html의 <head> 안에 넣기
+- sitemap.xml 제출
+
+주의:
+네이버/구글 소유권 확인 meta 태그는 사용자 계정에서 발급받아야 하므로 제가 임의로 넣을 수 없습니다.
+발급받은 태그를 보내주시면 제가 index.html에 정확히 넣어드릴 수 있습니다.
