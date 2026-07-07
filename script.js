@@ -1,5 +1,20 @@
-const menuBtn=document.getElementById('menuBtn');const nav=document.getElementById('nav');menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-const slides=[...document.querySelectorAll('.hero-slide')];const dots=[...document.querySelectorAll('#heroDots button')];let slideIndex=0;function showSlide(i){slides.forEach((s,n)=>s.classList.toggle('active',n===i));dots.forEach((d,n)=>d.classList.toggle('active',n===i));slideIndex=i}dots.forEach((d,i)=>d.addEventListener('click',()=>showSlide(i)));setInterval(()=>showSlide((slideIndex+1)%slides.length),4500);
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const filterTabs=document.getElementById('filterTabs');const galleryItems=[...document.querySelectorAll('#galleryGrid button')];filterTabs.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;document.querySelectorAll('#filterTabs button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');const f=e.target.dataset.filter;galleryItems.forEach(item=>item.classList.toggle('hide',f!=='all'&&item.dataset.cat!==f));});
-const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightboxImg');document.getElementById('galleryGrid').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;lightboxImg.src=btn.dataset.img;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');});function closeLb(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');lightboxImg.src=''}document.getElementById('closeLightbox').addEventListener('click',closeLb);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+const slides=[...document.querySelectorAll('.hero-bg')];
+const dots=[...document.querySelectorAll('.dots button')];
+let current=0;
+function showSlide(i){current=(i+slides.length)%slides.length;slides.forEach((s,idx)=>s.classList.toggle('active',idx===current));dots.forEach((d,idx)=>d.classList.toggle('on',idx===current));}
+document.querySelector('.next').addEventListener('click',()=>showSlide(current+1));
+document.querySelector('.prev').addEventListener('click',()=>showSlide(current-1));
+dots.forEach((d,i)=>d.addEventListener('click',()=>showSlide(i)));
+setInterval(()=>showSlide(current+1),4500);
+
+const filterBtns=document.querySelectorAll('.filter button');
+const galleryImgs=document.querySelectorAll('.gallery-grid img');
+filterBtns.forEach(btn=>btn.addEventListener('click',()=>{filterBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;galleryImgs.forEach(img=>img.classList.toggle('hide',f!=='all'&&img.dataset.cat!==f));}));
+
+const lightbox=document.querySelector('.lightbox');
+const lightImg=document.querySelector('.lightbox img');
+galleryImgs.forEach(img=>img.addEventListener('click',()=>{lightImg.src=img.src;lightImg.alt=img.alt;lightbox.classList.add('show');lightbox.setAttribute('aria-hidden','false');}));
+document.querySelector('.lightbox button').addEventListener('click',()=>{lightbox.classList.remove('show');lightbox.setAttribute('aria-hidden','true');});
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)document.querySelector('.lightbox button').click();});
+
+document.querySelector('.top-btn').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
